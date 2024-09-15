@@ -255,29 +255,136 @@ dict_c = {}
 ```
 
 #### set
+
+Un set est une collection non ordonnée d'éléments uniques. Il est utile pour les opérations mathématiques comme l'union, l'intersection, et la différence.
+
+```python
+
+# set
+set_a = {1, 2, 3, 4, 5}
+set_b = set([3, 4, 5, 6, 7])
+
+# Opérations de base
+union_set = set_a | set_b  # Union
+intersection_set = set_a & set_b  # Intersection
+difference_set = set_a - set_b  # Différence
+
+print("Set A:", set_a)
+print("Set B:", set_b)
+print("Union:", union_set)
+print("Intersection:", intersection_set)
+print("Difference:", difference_set)
+```
+
 #### Iterable
 
-```python
-
-```
-
-## I/O
-
-### stdin/stdout/stderr
+En Python, un objet itérable est tout objet capable de retourner ses membres un par un. Cela inclut des structures comme les listes, les tuples, les ensembles et les dictionnaires.
 
 ```python
+# Exemple d'itération sur une liste
+iterable_list = [1, 2, 3, 4, 5]
+for item in iterable_list:
+    print(item)
 
+# Exemple d'itération sur un dictionnaire
+iterable_dict = {'a': 1, 'b': 2, 'c': 3}
+for key, value in iterable_dict.items():
+    print(f"Key: {key}, Value: {value}")
 ```
 
-### Manipulation de fichier
+### IO
+#### stdin/stdout/stderr
+En Python, les flux d'entrée/sortie standard sont disponibles via les objets sys.stdin, sys.stdout, et sys.stderr. Ils permettent de lire et d'écrire des données en utilisant ces flux.
+
+Exemple de lecture de stdin :
 
 ```python
 
+import sys
+
+print("Entrez votre nom : ", end="")
+name = sys.stdin.readline().strip()
+print(f"Bonjour, {name} !")
+```
+Exemple d'écriture dans stdout et stderr :
+
+```python
+
+import sys
+
+print("Ceci est une sortie standard", file=sys.stdout)
+print("Ceci est une erreur", file=sys.stderr)
+```
+#### Manipulation de fichiers
+
+Python propose plusieurs méthodes pour lire et écrire des fichiers. Voici quelques exemples de base :
+
+Lire un fichier :
+
+```python
+
+with open('example.txt', 'r') as file:
+  content = file.read()
+  print(content)
+```
+Écrire dans un fichier :
+
+```python
+
+with open('example.txt', 'w') as file:
+  file.write("Hello, World!\n")
+  file.write("Python is great!")
 ```
 
-## Les classes 
+Ajouter à un fichier :
 
-Syntax d'une classe, private/public/constructeur
+```python
+
+with open('example.txt', 'a') as file:
+file.write("\nAppended text")
+```
+
+### Les Classes
+
+En Python, les classes sont définies avec le mot-clé class. La syntaxe est simple et les concepts de base incluent les attributs, les méthodes, et les constructeurs.
+
+Exemple de classe :
+
+```python
+
+class Person:
+def __init__(self, name, age):
+self.name = name  # Attribut public
+self.age = age
+
+    def greet(self):  # Méthode
+        return f"Hello, my name is {self.name} and I am {self.age} years old."
+
+# Création d'une instance
+person = Person("Alice", 30)
+print(person.greet())
+```
+
+En Python, les attributs sont publics par défaut, et pour créer des attributs privés, on utilise une convention de nommage avec un préfixe double underscore __.
+
+Exemple avec attributs privés :
+
+```python
+
+class Person:
+def __init__(self, name, age):
+self.__name = name
+self.__age = age
+
+    def greet(self):
+        return f"Hello, my name is {self.__name} and I am {self.__age} years old."
+
+# Création d'une instance
+person = Person("Alice", 30)
+print(person.greet())
+# Accéder à un attribut privé directement n'est pas possible :
+# print(person.__name)  # Cela générera une erreur
+```
 
 ## TP
 
