@@ -29,7 +29,7 @@ Bien que Python soit facile à écrire avec des éditeurs de texte simples comme
 est conseillé d'utiliser un IDE pour une meilleure expérience de développement. Je recommande
 PyCharm (Community Edition) ou VSCode pour leurs fonctionnalités avancées et leur support étendu.
 
----
+\newpage
 
 ## Python : Les Bases
 
@@ -65,8 +65,10 @@ int main() {
   printf("Sum of %d + %f = %d, len of str %d", a, b, sum(a, (int)b), strlen(str));  
 }
 ```
+\newpage
 
 #### Équivalent en Python
+
 
 ```python
 def sum(a, b):
@@ -87,6 +89,7 @@ if __name__ == '__main__':
     print(f"Sum of {ex_a} + {ex_b} = {sum(ex_a, ex_b)}, len of str is {strlen(ex_str)}")
 ```
 
+\newpage
 ### Structures de Contrôle
 
 #### **Conditions**
@@ -186,7 +189,7 @@ int main() {
 - **Conversion Automatique** : Pas de cast explicite lors de l'addition d'entiers et de flottants.
 - **Syntaxe de Condition** : Les parenthèses `()` sont facultatives pour les conditions en Python.
 
----
+\newpage
 
 ## Python : Les structures de données
 
@@ -271,9 +274,9 @@ difference_set = set_a - set_b  # Différence
 
 print("Set A:", set_a)
 print("Set B:", set_b)
-print("Union:", union_set)
-print("Intersection:", intersection_set)
-print("Difference:", difference_set)
+print("Union:", union_set)  # 1 2 3 4 5 6 7
+print("Intersection:", intersection_set)  # 3 4 5
+print("Difference:", difference_set)  # 1 2 6 7
 ```
 
 #### Iterable
@@ -324,7 +327,7 @@ Lire un fichier :
 ```python
 
 with open('example.txt', 'r') as file:
-  content = file.read()
+  content = file.read() # Charge l'intégralité du fichier en mémoire
   print(content)
 ```
 Écrire dans un fichier :
@@ -341,9 +344,9 @@ Ajouter à un fichier :
 ```python
 
 with open('example.txt', 'a') as file:
-file.write("\nAppended text")
+    file.write("\nAppended text")
 ```
-
+\newpage
 ### Les Classes
 
 En Python, les classes sont définies avec le mot-clé class. La syntaxe est simple et les concepts de base incluent les attributs, les méthodes, et les constructeurs.
@@ -353,12 +356,12 @@ Exemple de classe :
 ```python
 
 class Person:
-def __init__(self, name, age):
-self.name = name  # Attribut public
-self.age = age
+  def __init__(self, name, age):
+    self.name = name  # Attribut public
+    self.age = age
 
-    def greet(self):  # Méthode
-        return f"Hello, my name is {self.name} and I am {self.age} years old."
+  def greet(self):  # Méthode
+      return f"Hello, my name is {self.name} and I am {self.age} years old."
 
 # Création d'une instance
 person = Person("Alice", 30)
@@ -370,14 +373,13 @@ En Python, les attributs sont publics par défaut, et pour créer des attributs 
 Exemple avec attributs privés :
 
 ```python
-
 class Person:
-def __init__(self, name, age):
-self.__name = name
-self.__age = age
+  def __init__(self, name, age):
+    self.__name = name
+    self.__age = age
 
-    def greet(self):
-        return f"Hello, my name is {self.__name} and I am {self.__age} years old."
+  def greet(self):
+      return f"Hello, my name is {self.__name} and I am {self.__age} years old."
 
 # Création d'une instance
 person = Person("Alice", 30)
@@ -386,9 +388,12 @@ print(person.greet())
 # print(person.__name)  # Cela générera une erreur
 ```
 
+\newpage
+
 ## TP
 
 Lire un fichier csv et le stocker en mémoire. Puis ensuite proposer un prompt à l'utilisateur permettant de : 
+
 * Chercher une ville ("get city $city") --> Retourne la ville en entier
 * Lister les villes présente dans un département ("get department $department")
 * Ajouter une nouvelle ville (add $city,$department,$population)
