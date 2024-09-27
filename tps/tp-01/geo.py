@@ -1,16 +1,25 @@
 from db import City, Db
 
-cities = []
 
-with open("./input.csv", "r") as fp:
-    for line in fp:
-        name, department_as_str, country, population_as_str = line.split(",")
-        cities.append(City(name, int(department_as_str), country, int(population_as_str)))
+def gen_db():
+    cities = []
+    with open("./input.csv", "r") as fp:
+        for line in fp:
+            name, department_as_str, country, population_as_str = line.split(",")
+            cities.append(City(name, int(department_as_str), country, int(population_as_str)))
 
-db = Db(cities)
+    return Db(cities)
+
+
+db = gen_db()
 
 
 def process_prompt(prompt: str) -> bool:
+    """
+    This function takes a prompt and parse it.
+    :param prompt: a string to parse
+    :return: a boolean, default True. False means nothing was done
+    """
     prompt_split = prompt.split(" ")
     if prompt.startswith("get city"):
         _, _, city = prompt_split
@@ -35,20 +44,10 @@ def process_prompt(prompt: str) -> bool:
         db.flush("./input.csv")
         return True
     elif prompt.startswith("top "):
-        pass
+        _, k = prompt_split
+        db.top(int(k))
+        return True
     return False
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 print(db.top(10))
