@@ -65,10 +65,10 @@ int main() {
   printf("Sum of %d + %f = %d, len of str %d", a, b, sum(a, (int)b), strlen(str));  
 }
 ```
+
 \newpage
 
 #### Équivalent en Python
-
 
 ```python
 def sum(a, b):
@@ -90,6 +90,7 @@ if __name__ == '__main__':
 ```
 
 \newpage
+
 ### Structures de Contrôle
 
 #### **Conditions**
@@ -218,9 +219,9 @@ Python offre de base plusieurs conteneurs, dont les principaux sont:
 * list
 * dict
 * set
+* tuple
 * iterable
-* [collections](https://docs.python.org/3/library/collections.html) 
-
+* [collections](https://docs.python.org/3/library/collections.html)
 
 Les implémentations sont précisées sur cette [page](https://wiki.python.org/moin/TimeComplexity)
 
@@ -234,7 +235,7 @@ _En interne la liste utilise un tableau qu'elle aggrandie lorsque celui-ci devie
 # List
 list_regular = []
 for i in range(0, 10):  # range return an iterable
-  list_regular.append(i)
+    list_regular.append(i)
 # Or
 list_one_line = [i for i in range(0, 10)]
 
@@ -244,22 +245,24 @@ list_from_iterable = list(range(0, 10))
 
 #### dict
 
-Généralement appelé Map dans la plupart des langages de programmation, il permet d'associer une clé unique à une valeur.
+Généralement appelé Map dans la plupart des langages de programmation, il permet d'associer une clé
+unique à une valeur.
 
 ```python
 # dict
 dict_regular = {}  # or dict_a = dict()
 for i in range(0, 10):
-  dict_regular[i] = i ** 2
+    dict_regular[i] = i ** 2
 # Or
-dict_b = {i: i ** 2 for i in range(0, 10)}
+dict_one_liner = {i: i ** 2 for i in range(0, 10)}
 # Or
-dict_c = {}
+dict_from_iterable = dict([(i, i ** 2) for i in range(0, 10)])
 ```
 
 #### set
 
-Un set est une collection non ordonnée d'éléments uniques. Il est utile pour les opérations mathématiques comme l'union, l'intersection, et la différence.
+Un set est une collection non ordonnée d'éléments uniques. Il est utile pour les opérations
+mathématiques comme l'union, l'intersection, et la différence.
 
 ```python
 
@@ -279,9 +282,18 @@ print("Intersection:", intersection_set)  # 3 4 5
 print("Difference:", difference_set)  # 1 2 6 7
 ```
 
+#### Tuples
+
+Grossièrement, une liste figée
+
+```python
+a_tuple = ('a', 2)
+```
+
 #### Iterable
 
-En Python, un objet itérable est tout objet capable de retourner ses membres un par un. Cela inclut des structures comme les listes, les tuples, les ensembles et les dictionnaires.
+En Python, un objet itérable est tout objet capable de retourner ses membres un par un. Cela inclut
+des structures comme les listes, les tuples, les ensembles et les dictionnaires.
 
 ```python
 # Exemple d'itération sur une liste
@@ -296,8 +308,11 @@ for key, value in iterable_dict.items():
 ```
 
 ### IO
+
 #### stdin/stdout/stderr
-En Python, les flux d'entrée/sortie standard sont disponibles via les objets sys.stdin, sys.stdout, et sys.stderr. Ils permettent de lire et d'écrire des données en utilisant ces flux.
+
+En Python, les flux d'entrée/sortie standard sont disponibles via les objets sys.stdin, sys.stdout,
+et sys.stderr. Ils permettent de lire et d'écrire des données en utilisant ces flux.
 
 Exemple de lecture de stdin :
 
@@ -309,6 +324,7 @@ print("Entrez votre nom : ", end="")
 name = sys.stdin.readline().strip()
 print(f"Bonjour, {name} !")
 ```
+
 Exemple d'écriture dans stdout et stderr :
 
 ```python
@@ -318,25 +334,28 @@ import sys
 print("Ceci est une sortie standard", file=sys.stdout)
 print("Ceci est une erreur", file=sys.stderr)
 ```
+
 #### Manipulation de fichiers
 
-Python propose plusieurs méthodes pour lire et écrire des fichiers. Voici quelques exemples de base :
+Python propose plusieurs méthodes pour lire et écrire des fichiers. Voici quelques exemples de
+base :
 
 Lire un fichier :
 
 ```python
 
 with open('example.txt', 'r') as file:
-  content = file.read() # Charge l'intégralité du fichier en mémoire
-  print(content)
+    content = file.read()  # Charge l'intégralité du fichier en mémoire
+    print(content)
 ```
+
 Écrire dans un fichier :
 
 ```python
 
 with open('example.txt', 'w') as file:
-  file.write("Hello, World!\n")
-  file.write("Python is great!")
+    file.write("Hello, World!\n")
+    file.write("Python is great!")
 ```
 
 Ajouter à un fichier :
@@ -346,40 +365,46 @@ Ajouter à un fichier :
 with open('example.txt', 'a') as file:
     file.write("\nAppended text")
 ```
+
 \newpage
+
 ### Les Classes
 
-En Python, les classes sont définies avec le mot-clé class. La syntaxe est simple et les concepts de base incluent les attributs, les méthodes, et les constructeurs.
+En Python, les classes sont définies avec le mot-clé class. La syntaxe est simple et les concepts de
+base incluent les attributs, les méthodes, et les constructeurs.
 
 Exemple de classe :
 
 ```python
 
 class Person:
-  def __init__(self, name, age):
-    self.name = name  # Attribut public
-    self.age = age
+    def __init__(self, name, age):
+        self.name = name  # Attribut public
+        self.age = age
 
-  def greet(self):  # Méthode
-      return f"Hello, my name is {self.name} and I am {self.age} years old."
+    def greet(self):  # Méthode
+        return f"Hello, my name is {self.name} and I am {self.age} years old."
+
 
 # Création d'une instance
 person = Person("Alice", 30)
 print(person.greet())
 ```
 
-En Python, les attributs sont publics par défaut, et pour créer des attributs privés, on utilise une convention de nommage avec un préfixe double underscore __.
+En Python, les attributs sont publics par défaut, et pour créer des attributs privés, on utilise une
+convention de nommage avec un préfixe double underscore __.
 
 Exemple avec attributs privés :
 
 ```python
 class Person:
-  def __init__(self, name, age):
-    self.__name = name
-    self.__age = age
+    def __init__(self, name, age):
+        self.__name = name
+        self.__age = age
 
-  def greet(self):
-      return f"Hello, my name is {self.__name} and I am {self.__age} years old."
+    def greet(self):
+        return f"Hello, my name is {self.__name} and I am {self.__age} years old."
+
 
 # Création d'une instance
 person = Person("Alice", 30)
@@ -392,16 +417,17 @@ print(person.greet())
 
 ## TP
 
-Lire un fichier csv et le stocker en mémoire. Puis ensuite proposer un prompt à l'utilisateur permettant de :
+Lire un fichier csv et le stocker en mémoire. Puis ensuite proposer un prompt à l'utilisateur
+permettant de :
 
 * Chercher une ville ("get city $city") --> Retourne la ville en entier
 * Lister les villes présente dans un département ("get department $department")
-* Ajouter une nouvelle ville (add $city,$department,$population)
+* Ajouter une nouvelle ville (add $city,$department,$country,$population)
 * Ecrire le contenu de la mémoire dans le fichier db.csv (flush)
+* Supprimer une ville ("delete $city")
+* Supprimer un departement ("delete $department")
 
 L'affichage se fait au format csv.
-
-
 
 ## Ressources Complémentaires
 

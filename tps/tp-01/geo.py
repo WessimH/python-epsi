@@ -2,7 +2,7 @@ from db import City, Db
 
 cities = []
 
-with open("./input.csv") as fp:
+with open("./input.csv", "r") as fp:
     for line in fp:
         name, department_as_str, country, population_as_str = line.split(",")
         cities.append(City(name, int(department_as_str), country, int(population_as_str)))
@@ -21,24 +21,34 @@ def process_prompt(prompt: str) -> bool:
         print(db.list_in_department(int(department_as_str)))
         return True
     elif prompt.startswith("add "):
-        _, city_name, department_as_str, country, population_as_str = prompt_split
-        city = City(city_name, int(department_as_str), country, int(population_as_str))
+        _, city_or_dep, department_as_str, country, population_as_str = prompt_split
+        city = City(city_or_dep, int(department_as_str), country, int(population_as_str))
         db.add(city)
         print("Added", city)
         return True
     elif prompt.startswith("delete"):
-        _, city_name = prompt_split
-        db.delete(city_name)
-        print(city_name, "was deleted")
+        _, city_or_dep = prompt_split
+        db.delete(city_or_dep)
+        print(city_or_dep, "was deleted")
         return True
     elif prompt == "flush":
         db.flush("./input.csv")
         return True
+    elif prompt.startswith("top "):
+        pass
     return False
 
-process_prompt("add Vertou 44 France 10000")
-process_prompt("flush")
-process_prompt("get city Vertou")
 
-while process_prompt(input()):
-    pass
+
+
+
+
+
+
+
+
+
+
+
+
+print(db.top(10))

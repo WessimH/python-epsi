@@ -2,11 +2,11 @@
 
 ---
 
-# **Cours 2 : Programmation Orientée Objet Avancée et Exceptions**
+# **Cours 2 : Programmation Orientée Objet Avancée, Exceptions, et Concepts Complémentaires**
 
 ## Objectifs
 
-Dans ce cours, nous allons approfondir la Programmation Orientée Objet (POO) en abordant des concepts clés comme l'héritage, le polymorphisme, la gestion des exceptions, la création d'exceptions personnalisées, le pattern matching, le mot-clé `with`, les classes auto-fermetures, et les générateurs.
+Dans ce cours, nous allons approfondir la Programmation Orientée Objet (POO) en abordant des concepts comme l'héritage, le polymorphisme, la gestion des exceptions, la création d'exceptions personnalisées, le pattern matching, le mot-clé `with`, les classes auto-fermetures, les générateurs, l'utilisation de `functools`, et la notion de complexité algorithmique (Big-O).
 
 ---
 
@@ -14,9 +14,9 @@ Dans ce cours, nous allons approfondir la Programmation Orientée Objet (POO) en
 
 ### Héritage
 
-L'héritage permet à une classe d'hériter des attributs et méthodes d'une autre classe, appelée classe parente ou super-classe. Cela permet de réutiliser le code et de le spécialiser pour créer de nouvelles fonctionnalités.
+L'héritage permet à une classe d'hériter des attributs et méthodes d'une autre classe, appelée super-classe. Cela permet de réutiliser le code et de le spécialiser pour créer de nouvelles fonctionnalités.
 
-**Exemple d'héritage en Python :**
+**Exemple d'héritage :**
 
 ```python
 class Animal:
@@ -37,7 +37,6 @@ class Cat(Animal):
         return f"{self.name} miaule."
 
 
-# Utilisation des classes
 dog = Dog("Rex")
 cat = Cat("Whiskers")
 
@@ -47,9 +46,9 @@ print(cat.speak())  # Whiskers miaule.
 
 ### Polymorphisme
 
-Le polymorphisme permet à des objets de classes différentes de répondre à la même méthode d'une manière spécifique à leur type. Cela rend le code plus flexible et extensible.
+Le polymorphisme permet à des objets de classes différentes de répondre à la même méthode d'une manière spécifique à leur type. Cela rend le code plus flexible.
 
-**Exemple de polymorphisme en Python :**
+**Exemple de polymorphisme :**
 
 ```python
 def make_animal_speak(animal):
@@ -97,9 +96,9 @@ finally:
 
 ## Création d'Exceptions Personnalisées
 
-En Python, vous pouvez créer vos propres exceptions en héritant de la classe `Exception` (ou d'une de ses sous classes). Cela permet de définir des erreurs spécifiques à votre application et de mieux gérer les cas d'erreur.
+Vous pouvez créer des exceptions personnalisées en héritant de la classe `Exception`. Cela permet de mieux gérer les erreurs spécifiques à votre application.
 
-### Exemple de création d'une exception personnalisée :
+**Exemple :**
 
 ```python
 class InvalidAgeError(Exception):
@@ -128,7 +127,7 @@ except InvalidAgeError as e:
 
 ## Pattern Matching (Python 3.10+)
 
-Le **pattern matching** a été ajouté sous la forme d'une instruction match et d'instructions case pour les motifs avec des actions associées. Les motifs filtrent des séquences, des dictionnaires, des types de données et des instances de classes. Le filtrage par motifs permet aux programmes d'extraire de l'information de types de données complexes, faire du branchement selon la structure des données et réaliser des actions spécifiques en fonction des différentes formes des données.
+Le pattern matching introduit dans Python 3.10 permet de faire correspondre des structures de données complexes avec des motifs spécifiques et de gérer chaque cas de manière distincte.
 
 ### Exemple basique :
 
@@ -142,15 +141,12 @@ def describe_point(point):
         case (x, 0):
             return f"Axe X, à {x}"
         case (x, y):
-            return f"Point quelconque à ({x}, {y})"
+            return f"Point à ({x}, {y})"
         case _:
             return "C'est autre chose"
 
 
 print(describe_point((0, 0)))  # Origine
-print(describe_point((0, 3)))  # Axe Y, à 3
-print(describe_point((2, 0)))  # Axe X, à 2
-print(describe_point((2, 3)))  # Point quelconque à (2, 3)
 ```
 
 ### Pattern Matching avec des Classes :
@@ -182,11 +178,11 @@ print(process_point(point))  # Sur l'axe Y à 5
 
 ## Mot-clé `with` et Classes Auto-Fermetures
 
-### Utilisation du Mot-clé `with`
+### Utilisation du mot-clé `with`
 
-Le mot-clé `with` simplifie la gestion des ressources en assurant leur nettoyage automatique. Il est souvent utilisé pour la gestion des fichiers, des connexions, etc.
+Le mot-clé `with` assure que les ressources sont libérées correctement après leur utilisation, même en cas d'exception.
 
-**Exemple avec la gestion de fichiers :**
+**Exemple :**
 
 ```python
 with open('example.txt', 'r') as file:
@@ -194,13 +190,13 @@ with open('example.txt', 'r') as file:
     print(content)
 ```
 
-Dans cet exemple, le fichier est automatiquement fermé après la fin du bloc `with`, même en cas d'erreur.
+Dans cet exemple, le fichier est automatiquement fermé après la fin du bloc `with`.
 
 ### Création de Classes Auto-Fermetures
 
-Pour créer des classes qui se ferment automatiquement, vous devez implémenter les méthodes `__enter__` et `__exit__`. Cela rend la classe compatible avec le mot-clé `with`.
+Pour créer des classes compatibles avec le mot-clé `with`, il faut implémenter les méthodes `__enter__` et `__exit__`.
 
-**Exemple de classe auto-fermeture :**
+**Exemple :**
 
 ```python
 class Resource:
@@ -223,9 +219,9 @@ with Resource() as resource:
 
 ## Générateurs et `yield`
 
-Les générateurs sont des fonctions qui produisent une séquence de valeurs à l'aide du mot-clé `yield`. Ils permettent de générer des éléments un par un et de conserver leur état entre les appels.
+Les générateurs produisent des séquences de valeurs à l'aide du mot-clé `yield`, permettant une gestion plus efficace de la mémoire.
 
-### Exemple de générateur :
+### Exemple :
 
 ```python
 def count_up_to(max):
@@ -239,35 +235,83 @@ for number in count_up_to(5):
     print(number)
 ```
 
-Dans cet exemple, la fonction `count_up_to` génère des nombres de 1 à `max`. Chaque appel à `yield` renvoie une valeur et suspend l'exécution de la fonction jusqu'au prochain appel.
+---
 
-### Avantages des Générateurs
+## Functools : Fonctions Utilitaires Avancées
 
-- **Faible empreinte en mémoire** : Ils permettent de travailler avec de grandes séquences de données sans les charger entièrement en mémoire.
-- **Lazy Evaluation** : Les valeurs sont générées à la demande.
+La bibliothèque **`functools`** fournit des outils utiles pour la manipulation des fonctions, comme la mémorisation, la composition, et les appels partiels.
+
+### `functools.lru_cache` : Mémorisation
+
+Le décorateur `lru_cache` permet de mémoriser les résultats de fonctions afin d'éviter de les recalculer.
+
+**Exemple :**
+
+```python
+import functools
+
+@functools.lru_cache(maxsize=128)
+def fibonacci(n):
+    if n < 2:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+print(fibonacci(50))
+```
+
+### `functools.partial` : Application Partielle
+
+La fonction `partial` permet de créer une nouvelle fonction avec certains arguments pré-remplis.
+
+**Exemple :**
+
+```python
+from functools import partial
+
+def power(base, exponent):
+    return base ** exponent
+
+square = partial(power, exponent=2)
+print(square(5))  # 25
+```
 
 ---
 
-## Travaux Pratiques (TD)
+## Complexité Algorithmique (Big-O)
 
-### Exercice : Gestion d'une Bibliothèque
+La **complexité algorithmique** mesure la performance d'un algorithme en fonction de la taille de l'entrée. Elle est souvent exprimée avec la notation Big-O, qui décrit la pire performance d'un algorithme.
 
-Développer un système de gestion de bibliothèque avec des classes pour les **livres**, les **auteurs**, et une **bibliothèque**.
+### Complexités communes :
 
-1. **Classe `Livre`** : Attributs `titre`, `auteur`, `année`.
-2. **Classe `Auteur`** : Attributs `nom`, `date_naissance`.
-3. **Classe `Bibliothèque`** : Méthodes pour ajouter des livres, rechercher des livres par auteur, etc.
-4. Implémenter une fonctionnalité pour sauvegarder l'état de la bibliothèque dans un fichier et pour le charger depuis ce fichier.
+- **O(1)** : Complexité constante. L'algorithme s'exécute en temps constant, peu importe la taille de l'entrée.
+- **O(n)** : Complexité linéaire. Le temps d'exécution augmente proportionnellement à la taille de l'entrée.
+- **O(n²)** : Complexité quadratique. Utilisé pour décrire des algorithmes de type boucle imbriquée.
+- **O(log n)** : Complexité logarithmique. Utilisé pour décrire des algorithmes où la taille du problème est divisée à chaque étape, comme la recherche binaire.
+
+### Exemples :
+
+**O(1)** : Accéder à un élément dans une liste.
+
+```python
+def get_first_element(lst):
+    return lst[0]
+```
+
+**O(n)** : Parcourir tous les éléments d'une liste.
+
+```python
+def print_all_elements(lst):
+    for elem in lst:
+        print(elem)
+```
+
+**O(n²)** : Boucles imbriquées.
+
+```python
+def print_all_pairs(lst):
+    for i in lst:
+        for j in lst:
+            print(i, j)
+```
 
 ---
-
-## Ressources Complémentaires
-
-- Documentation officielle de Python : [https://docs.python.org/fr/3/tutorial/index.html](https://docs.python.org/fr/3/tutorial/index.html)
-- Tutoriel POO Python : [https://www.w3schools.com/python/python_classes.asp](https://www.w3schools.com/python/python_classes.asp)
-- Générateurs : [https://docs.python.org/3/howto/pyworking.html#generators](https://docs.python.org/3/howto/pyworking.html#generators)
-- Pattern Matching : [https://docs.python.org/3/whatsnew/3.10.html#new-syntax-features](https://docs.python.org/3/whatsnew/3.10.html#new-syntax-features)
-
----
-
-**Fin du Cours 2**
