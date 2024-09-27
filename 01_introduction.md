@@ -392,12 +392,16 @@ print(person.greet())
 
 ## TP
 
-Lire un fichier csv et le stocker en mémoire. Puis ensuite proposer un prompt à l'utilisateur permettant de : 
+Lire un fichier csv et le stocker en mémoire. Puis ensuite proposer un prompt à l'utilisateur permettant de :
 
 * Chercher une ville ("get city $city") --> Retourne la ville en entier
 * Lister les villes présente dans un département ("get department $department")
 * Ajouter une nouvelle ville (add $city,$department,$population)
 * Ecrire le contenu de la mémoire dans le fichier db.csv (flush)
+
+L'affichage se fait au format csv.
+
+
 
 ## Ressources Complémentaires
 
