@@ -100,58 +100,17 @@ Utiliser une **factory** pour générer des objets `Pizza` ou `Boisson` à parti
 ]
 ```
 
-### Exemple de code pour la factory :
-```python
-import json
-
-class ProduitFactory:
-    @staticmethod
-    def creer_produit(type_produit, id_produit, menu):
-        match type_produit:
-            case "pizza":
-                pizza = Pizza(f"Pizza{id_produit}", "moyenne")
-                pizza.ajouter_ingredient(Ingredient("Fromage", 2))
-                pizza.ajouter_ingredient(Ingredient("Tomate", 1))
-                return pizza
-            case "boisson":
-                boisson_info = menu["boissons"][id_produit - 1]
-                return Boisson(boisson_info["nom"], boisson_info["volume"], boisson_info["prix"])
-            case _:
-                raise ValueError(f"Type de produit inconnu: {type_produit}")
-
-# Charger le menu depuis le fichier JSON
-with open('menu.json') as f:
-    menu = json.load(f)
-
-# Lecture des commandes
-with open('commandes.json') as f:
-    commandes = json.load(f)
-
-# Traitement des commandes
-for commande_info in commandes:
-    id_commande = commande_info["commande"]
-    produit_info = commande_info["produit"]
-    produit = ProduitFactory.creer_produit(produit_info["type"], produit_info["id"], menu)
-    print(f"Produit créé pour la commande {id_commande}: {produit.nom}")
-```
-
 ---
 
 ## **Bonus : Utilisation des Générateurs**
 
 ### Objectif :
-Utiliser un **générateur** pour lire et traiter les commandes une par une.
+Traiter les commandes à l'heure arrivée. 
+Surveillez le dossier d'input. A chaque fois que l'on ajoute un fichier de commande, il faut afficher sur la console:
+- Nombre d'item et prix de la commande
 
 ### Tâche :
 Créer une fonction `lire_commandes(fichier)` qui renvoie une commande à chaque appel à l'aide du mot-clé `yield`.
-
-```python
-def lire_commandes(fichier):
-    with open(fichier, 'r') as f:
-        commandes = json.load(f)
-        for commande in commandes:
-            yield commande
-```
 
 ---
 
