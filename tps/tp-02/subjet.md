@@ -19,24 +19,24 @@ Modéliser les **pizzas** et **boissons**.
 ### Tâches :
 
 1. **Créer la classe `Ingredient`** :
-    - Attributs : `nom`, `prix`.
+    - Attributs : `name`.
     - Exemple : un ingrédient pourrait être "fromage", "tomate", etc.
 
 2. **Créer la classe `Pizza`** :
     - Une pizza est composée de plusieurs ingrédients.
-    - Attributs : `nom`, `taille` (petite, moyenne, grande), `prix` (calculé en fonction des ingrédients).
-    - Méthode : `ajouter_ingredient(ingredient)` qui ajoute un ingrédient à la pizza.
+    - Attributs : `nom`, `size` (petite, moyenne, grande), `price`.
+    - Méthode : `add_ingredient(ingredient)` qui ajoute un ingrédient à la pizza.
 
-3. **Créer la classe `Boisson`** :
-    - Attributs : `nom`, `volume` (en ml), `prix`.
+3. **Créer la classe `Drink`** :
+    - Attributs : `name`, `volume` (en ml), `price`.
 
 **Exemple de sortie attendue** :
 ```python
-pizza = Pizza("Margherita", "moyenne")
-pizza.ajouter_ingredient(Ingredient("Fromage", 2))
-pizza.ajouter_ingredient(Ingredient("Tomate", 1))
+pizza = Pizza("Margherita", "moyenne", price=20)
+pizza.add_ingredient(Ingredient("Fromage"))
+pizza.add_ingredient(Ingredient("Tomate"))
 
-boisson = Boisson("Coca-Cola", 500, 2)
+boisson = Drink("Coca-Cola", 500, 2)
 ```
 
 ---
@@ -49,16 +49,16 @@ Créer une classe `Commande` qui contient plusieurs produits et permet de calcul
 ### Tâches :
 
 1. **Créer la classe `Commande`** :
-    - Attributs : `id_commande`, `produits` (liste de pizzas ou boissons).
-    - Méthode : `ajouter_produit(produit)` pour ajouter un produit à la commande.
+    - Attributs : `id_commande`, `products` (liste de pizzas ou boissons).
+    - Méthode : `add_product(produit)` pour ajouter un produit à la commande.
     - Méthode : `total()` pour calculer le prix total de la commande.
 
 **Exemple de sortie attendue** :
 ```python
-commande = Commande(1)
-commande.ajouter_produit(pizza)
-commande.ajouter_produit(boisson)
-print(f"Total de la commande : {commande.total()} euros")
+command = Command(1)
+command.add_product(pizza)
+command.add_product(boisson)
+print(f"Total de la commande : {command.total()} euros")
 ```
 
 ---
@@ -75,7 +75,7 @@ Utiliser une **factory** pour générer des objets `Pizza` ou `Boisson` à parti
 ### Tâches :
 
 1. **Factory `ProduitFactory`** :
-    - Créer une méthode `creer_produit` qui utilise le pattern matching pour déterminer s'il faut créer une pizza ou une boisson.
+    - Créer une méthode `create_product` qui utilise le pattern matching pour déterminer s'il faut créer une pizza ou une boisson.
     - Les ingrédients des pizzas peuvent être prédéfinis ou générés à partir du fichier.
 
 2. **Lecture des commandes** :
@@ -94,15 +94,25 @@ Utiliser une **factory** pour générer des objets `Pizza` ou `Boisson` à parti
 ### Structure du fichier `commandes.json` :
 ```json
 [
-    {"commande": 1, "produit": {"type": "pizza", "id": 1}},
-    {"commande": 1, "produit": {"type": "boisson", "id": 1}},
-    {"commande": 2, "produit": {"type": "boisson", "id": 2}}
+   {
+      "commande_id": 1,
+      "items": [
+         "Pesto",
+         "Sprite",
+         "Jus d'orange",
+         "Coca-Cola",
+         "Pesto",
+         "V\u00e9g\u00e9tarienne",
+         "Coca-Cola",
+         "Pesto"
+      ]
+   },
 ]
 ```
 
 ---
 
-## **Bonus : Utilisation des Générateurs**
+## **Bonus : Utilisation des Générateurs/Création d'un watcher**
 
 ### Objectif :
 Traiter les commandes à l'heure arrivée. 
@@ -110,12 +120,12 @@ Surveillez le dossier d'input. A chaque fois que l'on ajoute un fichier de comma
 - Nombre d'item et prix de la commande
 
 ### Tâche :
-Créer une fonction `lire_commandes(fichier)` qui renvoie une commande à chaque appel à l'aide du mot-clé `yield`.
+Créer une fonction `read_commands(fichier)` qui renvoie une commande à chaque appel à l'aide du mot-clé `yield`.
 
 ---
 
 ## **Livrables** :
-- Le code des classes `Ingredient`, `Pizza`, `Boisson`, `Commande` et `ProduitFactory`.
+- Le code des classes `Ingredient`, `Pizza`, `Boisson`, `Commande` et `ProductFactory`.
 - La gestion des fichiers JSON pour le menu et les commandes.
 - Une démonstration de la création et du traitement des commandes.
 
