@@ -26,7 +26,7 @@
       "prix": 1
     },
     {
-      "nom": "Eau p\u00e9tillante",
+      "nom": "Eau pétillante",
       "volume": 500,
       "prix": 1.5
     },
@@ -46,7 +46,7 @@
       "prix": 2
     },
     {
-      "nom": "Th\u00e9 glac\u00e9",
+      "nom": "Thé glacé",
       "volume": 500,
       "prix": 2
     }
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "nom": "Hawa\u00efenne",
+      "nom": "Hawaïenne",
       "taille": "M",
       "prix": 9.5,
       "garnitures": [
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "nom": "V\u00e9g\u00e9tarienne",
+      "nom": "Végétarienne",
       "taille": "M",
       "prix": 8.5,
       "garnitures": [
