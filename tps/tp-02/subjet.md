@@ -1,5 +1,7 @@
 # **TP - Gestion de Commandes pour une Pizzeria**
 
+(Sources)[https://github.com/navispeed/python-epsi/tree/main/tps/tp-02]
+
 Dans ce TP, vous allez modéliser un système de gestion de commandes pour une pizzeria en utilisant les concepts avancés de la Programmation Orientée Objet (POO) : **héritage**, **polymorphisme**, **composition**, **agrégation**, et **factory**. Vous travaillerez également avec des fichiers JSON pour simuler un menu et des commandes de clients.
 
 ## **Objectifs :**
