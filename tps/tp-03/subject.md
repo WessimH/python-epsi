@@ -1,5 +1,3 @@
-from correction.product import Product
-
 # **TP - Programmation Orientée Objet Avancée en Python**
 
 Ce TP est composé de 19 exercices indépendants.  
