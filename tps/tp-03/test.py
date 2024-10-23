@@ -22,9 +22,12 @@ def test_exercise_2():
 
 # Exercice 3: Décorateurs
 def test_exercise_3():
-    assert check_positive(4) == 8
+    @check_positive
+    def t(n: int):
+        return n * 2
+    assert t(4) == 8
     with pytest.raises(ValueError):
-        check_positive(-5)
+        t(-5)
 
 
 # Exercice 4: Propriétés (Property)
