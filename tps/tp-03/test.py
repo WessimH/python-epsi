@@ -7,6 +7,8 @@ def test_exercise_1():
     rectangle = Rectangle(4, 6)
     assert pytest.approx(circle.area(), 0.01) == 78.54
     assert rectangle.area() == 24
+    with pytest.raises(TypeError):
+        Shape()
 
 
 # Exercice 2: Surcharge d'Opérateurs
