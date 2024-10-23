@@ -1,6 +1,6 @@
 # **TP - Programmation Orientée Objet Avancée en Python**
 
-Ce TP est composé de 19 exercices indépendants.  
+Ce TP est composé de 16 exercices indépendants (+ bonus).  
 Chaque exercice est conçu pour approfondir vos compétences en POO tout en introduisant des défis de
 plus en plus complexes.
 
@@ -261,15 +261,7 @@ except ValueError:
 
 ---
 
-## **Exercice 13 : Chainage de Décorateurs**
-
-Créez deux décorateurs : `@check_positive` et `@add_log`.  
-Le premier vérifie qu’un nombre est positif, le second logge l’exécution de la fonction.  
-Appliquez les deux décorateurs à une fonction et assurez-vous que le résultat soit correct.
-
----
-
-## **Exercice 14 : Surcharge d'Opérateurs**
+## **Exercice 13 : Surcharge d'Opérateurs**
 
 Créez une classe `Vector` représentant un vecteur mathématique à deux dimensions.  
 Implémentez les opérations de `+`, `-`, et `*`.
@@ -289,41 +281,53 @@ assert v4.x == 2 and v4.y == 4
 
 ---
 
-## **Exercice 15 : Mock**
+## **Exercice 14 : Mock et Monkey-Patch**
 
-Les frameworks de tests proposent des méthodes permettant de "mocker" des objets.  
-Votre but est de créer une classe `UserService` qui récupère des informations d'un utilisateur via
-une API externe.  
-Implémentez une méthode `get_user_data(user_id)` qui simule une requête à une API pour obtenir les
-données d'un utilisateur.
+Les frameworks de tests proposent des méthodes permettant de "mocker" des objets. L'objectif de cet exercice est de créer vous-même un mock en utilisant le "monkey-patch".
+Instructions :
 
-Dans un test unitaire, utilisez un **mock** pour simuler l'API et assurez-vous que votre méthode
-renvoie les bonnes informations.
+    Créez une classe MockFunction qui prend une return_value à la création et se comporte comme une fonction en retournant cette valeur.
+    Créez une fonction patch qui permet de remplacer une fonction par un mock pour la durée d'un contexte (with).
+    La fonction patch doit être un context manager, et tant que l’on est dans le contexte, c’est la fonction mockée qui est appelée.
 
-Exemple :
+Exemples de code pour vous aider :
+
+Exemple de Monkey-Patching :
+```python
+def original_function():
+    return "Original Function"
+
+def mock_function():
+    return "Mock Function"
+
+# Monkey-patch
+original_function = mock_function
+
+# Test
+print(original_function())  # Affiche "Mock Function"
+```
+
+Exemple d'utilisation de la fonction patch :
 
 ```python
-class UserService:
-    def get_user_data(self, user_id):
-        # Simuler une requête API externe pour obtenir les données d'un utilisateur
-        pass
+class MockFunction:
+    def __init__(self, return_value):
+        self.return_value = return_value
 
-    # Dans un test unitaire, utiliser
-
-
-un
-mock:
+    def __call__(self, *args, **kwargs):
+        return self.return_value
 
 
-def test_get_user_data(mocker):
-    user_service = UserService()
-    mocker.patch.object(user_service, 'get_user_data', return_value={"id": 1, "name": "John Doe"})
-    assert user_service.get_user_data(1) == {"id": 1, "name": "John Doe"}
+# Test de patch
+with patch('function_to_patch', "Mocked!"):
+    print(function_to_patch())  # Affiche "Mocked!"
+
+print(function_to_patch())  # Affiche "Original Function"
 ```
 
 ---
 
-## **Exercice 16 : Classes Génériques et Méthodes Statistiques**
+## **Exercice 15 : Classes Génériques et Méthodes Statistiques**
 
 Créez une classe générique `Statistics` qui accepte une liste de nombres et fournit des méthodes
 pour calculer la moyenne, la médiane et la variance des données.  
@@ -331,7 +335,7 @@ Utilisez le module `statistics` pour vous aider.
 
 ---
 
-## **Exercice 17 : Vecteurs et Calculs**
+## **Exercice 16 : Vecteurs et Calculs**
 
 Créez une classe `Vector3D` représentant un vecteur en trois dimensions.  
 Implémentez la méthode pour calculer la norme, l’addition et le produit scalaire entre deux vecteurs
