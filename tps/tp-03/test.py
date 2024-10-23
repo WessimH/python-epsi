@@ -1,3 +1,5 @@
+import time
+
 import pytest
 from reponse import *
 
@@ -75,13 +77,21 @@ def test_exercise_7():
 
 # Exercice 8: Décorateurs avec Paramètres
 def test_exercise_8():
+
+    @timeout_limit(1)
+    def t():
+        time.sleep(2)
     with pytest.raises(TimeoutError):
-        timeout_limit(10)
+        t()
 
 
 def test_exercise_8_bonus():
+    @timeout_limit(1, raise_exception=True)
+    def t():
+        time.sleep(2)
+
     with pytest.raises(TimeoutError):
-        timeout_limit(10, raise_exception=True)
+        t()
 
 
 # Exercice 9: Opérateurs Avancés (Matrice)
@@ -183,9 +193,9 @@ def test_exercise_16():
     result_dot = v1 * v2
     assert result_dot == 32, "Erreur dans le calcul du produit scalaire."
 
-    # Test norme
+    # Test norm
     v5 = Vector3D(3, 4, 0)
-    result_norm = v5.norme()
+    result_norm = v5.norm()
     assert pytest.approx(result_norm, 0.01) == 5, "Erreur dans le calcul de la norme du vecteur."
 
     # Test opération invalide
