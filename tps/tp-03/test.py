@@ -71,10 +71,10 @@ def test_exercise_7():
 # Exercice 8: Décorateurs avec Paramètres
 def test_exercise_8():
     with pytest.raises(TimeoutError):
-        slow_function(10)
+        timeout_limit(10)
 
     with pytest.raises(TimeoutError):
-        slow_function_with_thread(10, raise_exception=True)
+        timeout_limit(10, raise_exception=True)
 
 
 # Exercice 9: Opérateurs Avancés (Matrice)
