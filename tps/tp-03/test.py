@@ -1,6 +1,7 @@
 import pytest
 from reponse import *
 
+
 # Exercice 1: Classe Abstraite Simple
 def test_exercise_1():
     circle = Circle(5)
@@ -25,6 +26,7 @@ def test_exercise_3():
     @check_positive
     def t(n: int):
         return n * 2
+
     assert t(4) == 8
     with pytest.raises(ValueError):
         t(-5)
@@ -76,6 +78,7 @@ def test_exercise_8():
     with pytest.raises(TimeoutError):
         timeout_limit(10)
 
+
 def test_exercise_8_bonus():
     with pytest.raises(TimeoutError):
         timeout_limit(10, raise_exception=True)
@@ -109,6 +112,7 @@ def test_exercise_11():
     assert p2 < p1
     assert p1 != p2
 
+
 def test_exercise_11_bonus():
     p1 = Product("Laptop", 1000)
     p2 = Product("Phone", 800)
@@ -131,8 +135,8 @@ def test_exercise_12():
         account.withdraw(1000)
 
 
-# Exercice 14: Surcharge d'Opérateurs (Vecteur)
-def test_exercise_14():
+# Exercice 13: Surcharge d'Opérateurs (Vecteur)
+def test_exercise_13():
     v1 = Vector(2, 3)
     v2 = Vector(4, 5)
     v3 = v1 + v2
@@ -143,8 +147,8 @@ def test_exercise_14():
     assert v5.x == 6 and v5.y == 9
 
 
-# Exercice 15: Mock et Monkey-Patch
-def test_exercise_15():
+# Exercice 14: Mock et Monkey-Patch
+def test_exercise_14():
     def original_function():
         return "Original"
 
@@ -154,10 +158,36 @@ def test_exercise_15():
     assert original_function() == "Original"
 
 
-# Exercice 16: Classes Génériques et Méthodes Statistiques
-def test_exercise_16():
+# Exercice 15: Classes Génériques et Méthodes Statistiques
+def test_exercise_15():
     stats = Statistics([10, 20, 30, 40])
     assert stats.mean() == mean([10, 20, 30, 40])
     assert stats.median() == median([10, 20, 30, 40])
     assert pytest.approx(stats.variance(), 0.01) == variance([10, 20, 30, 40])
 
+
+def test_exercise_16():
+    # Test addition
+    v1 = Vector3D(1, 2, 3)
+    v2 = Vector3D(4, 5, 6)
+    result_add = v1 + v2
+    assert result_add.x == 5 and result_add.y == 7 and result_add.z == 9, "Erreur dans l'addition de deux vecteurs."
+
+    # Test soustraction
+    v3 = Vector3D(7, 8, 9)
+    v4 = Vector3D(3, 2, 1)
+    result_sub = v3 - v4
+    assert result_sub.x == 4 and result_sub.y == 6 and result_sub.z == 8, "Erreur dans la soustraction de deux vecteurs."
+
+    # Test produit scalaire
+    result_dot = v1 * v2
+    assert result_dot == 32, "Erreur dans le calcul du produit scalaire."
+
+    # Test norme
+    v5 = Vector3D(3, 4, 0)
+    result_norm = v5.norme()
+    assert pytest.approx(result_norm, 0.01) == 5, "Erreur dans le calcul de la norme du vecteur."
+
+    # Test opération invalide
+    with pytest.raises(TypeError):
+        result_invalid = v1 + 10  # Devrait lever une exception pour addition avec un non-vecteur
