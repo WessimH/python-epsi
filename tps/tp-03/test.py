@@ -78,17 +78,17 @@ def test_exercise_7():
 # Exercice 8: Décorateurs avec Paramètres
 def test_exercise_8():
 
-    @timeout_limit(10)
+    @timeout_limit(1)
     def t():
-        time.sleep(15)
+        time.sleep(2)
     with pytest.raises(TimeoutError):
         t()
 
 
 def test_exercise_8_bonus():
-    @timeout_limit(10, raise_exception=True)
+    @timeout_limit(1, raise_exception=True)
     def t():
-        time.sleep(15)
+        time.sleep(2)
 
     with pytest.raises(TimeoutError):
         t()
