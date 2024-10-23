@@ -73,6 +73,7 @@ def test_exercise_8():
     with pytest.raises(TimeoutError):
         timeout_limit(10)
 
+def test_exercise_8_bonus():
     with pytest.raises(TimeoutError):
         timeout_limit(10, raise_exception=True)
 
