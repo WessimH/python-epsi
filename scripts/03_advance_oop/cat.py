@@ -54,10 +54,10 @@ mr2 = Cat(Gender.MALE)
 ms = Cat(Gender.FEMALE)
 
 print(mr + ms)
-try:
-    print(mr + mr2)
-except AngryException:
-    pass
+# try:
+print(mr + mr2)
+# except AngryException:
+#     pass
 
 try:
     undefined = Animal(Gender.MALE)
